@@ -111,7 +111,7 @@ const About: React.FC = () => {
 
                 {/* Profile Image */}
                 <div className="lg:col-span-2 flex justify-center items-start">
-                    <div className="group relative w-64 h-64 md:w-72 md:h-72">
+                    <div className="group relative w-80 h-80 md:w-96 md:h-96">
                         <div className="absolute inset-0 bg-brand rounded-md z-0 transition-transform duration-300 group-hover:translate-x-2 group-hover:translate-y-2"></div>
                         <div className="absolute inset-0 rounded-md overflow-hidden z-10 border-2 border-transparent group-hover:border-brand transition-colors duration-300">
                             <img 
