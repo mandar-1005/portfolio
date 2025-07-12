@@ -82,6 +82,10 @@ export const IconAA = ({ className = "w-10 h-10" }) => (
   <img src="/aa.png" alt="Advanced Analytics" className={className} />
 );
 
+export const IconVTIAC = ({ className = "" }) => (
+    <img src="/vtiac.png" alt="Virginia Tech Institute for Advanced Computing" className={className} />
+);
+
 // App Data
 export const email = 'mandarmenjoge@gmail.com';
 
@@ -108,14 +112,14 @@ export const journey: JourneyItem[] = [
   {
     type: 'Experience',
     title: 'Web Application Developer',
-    organization: 'Virginia Tech',
+    organization: 'Virginia Tech Institute of Advanced Computing',
     period: 'May 2025 - Present',
     description: [
       'Designing a full-stack web platform to help CS faculty and students organize articles, case studies, and discussions.',
       'Planning to use Next.js, Node.js, and MongoDB for a scalable, user-friendly web application.',
       'Exploring integration with OpenAI API to auto-suggest tags and summarize uploaded content.',
     ],
-    logo: <IconVirginiaTech />, 
+    logo: <IconVTIAC />, 
     link: 'https://www.vt.edu',
   },
   {
