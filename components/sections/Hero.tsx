@@ -8,7 +8,7 @@ const DELAY_BEFORE_FADE_IN = 500; // Pause before fading in the rest of the cont
 // Lines to be typed out
 const lines = [
   { text: 'Hi, my name is', className: 'font-mono text-brand text-base md:text-lg mb-4' },
-  { text: 'Mandar Menjoge.', className: 'text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-navy dark:text-lightest-slate transition-colors duration-500' },
+  { text: 'Mandar.', className: 'text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-navy dark:text-lightest-slate transition-colors duration-500' },
   { text: 'I craft full-stack web apps, engineer scalable software, and build intelligent data pipelines', className: 'text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-light-navy dark:text-slate-400 transition-colors duration-500 mt-2' }
 ];
 

@@ -120,7 +120,7 @@ export const journey: JourneyItem[] = [
       'Exploring integration with OpenAI API to auto-suggest tags and summarize uploaded content.',
     ],
     logo: <IconVTIAC />, 
-    link: 'https://www.vt.edu',
+    link: 'https://www.iac.vt.edu',
   },
   {
     type: 'Education',

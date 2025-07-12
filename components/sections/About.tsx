@@ -8,7 +8,7 @@ const About: React.FC = () => {
     const [typingFinished, setTypingFinished] = useState(false);
     
     const lines = [
-        "Hello! I'm Mandar, a Computer Science grad student at Virginia Tech with a background in Data Engineering and Software Development.",
+        "Hello! I'm Mandar Menjoge, a Computer Science grad student at Virginia Tech with a background in Data Engineering and Software Development.",
         "My passion lies in solving complex problems and building robust applications, with a proficiency in Python, SQL, Databricks, Informatica, Snowflake, and PySpark.",
         "I thrive in cross-functional teams and I'm always eager to learn about the latest technology trends.",
         "I am currently seeking summer internships or co-op opportunities in software development or data engineering.",
