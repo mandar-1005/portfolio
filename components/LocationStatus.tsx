@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useScrollObserver } from '../hooks/useScrollObserver';
+import { db } from '../firebase';
+import { doc, getDoc, setDoc } from 'firebase/firestore';
 
 interface LocationStatusProps {
   isDark: boolean;
 }
+
+const ADMIN_PASSWORD = import.meta.env.VITE_ADMIN_PASSWORD;
 
 const LocationStatus: React.FC<LocationStatusProps> = ({ isDark }) => {
   const [ref, isVisible] = useScrollObserver();
@@ -12,21 +16,31 @@ const LocationStatus: React.FC<LocationStatusProps> = ({ isDark }) => {
   const [isAdmin, setIsAdmin] = useState(false);
   const glassCardStyles = "bg-slate-300/20 dark:bg-light-navy/20 backdrop-blur-sm border border-slate-400/20 dark:border-light-slate/20 rounded-lg shadow-lg p-6 transition-colors duration-500";
 
+  // Fetch status from Firestore on mount
   useEffect(() => {
+    const fetchStatus = async () => {
+      const statusDoc = await getDoc(doc(db, 'site', 'status'));
+      if (statusDoc.exists()) {
+        setIsAvailable(!!statusDoc.data().isAvailable);
+      }
+    };
+    fetchStatus();
     const timer = setInterval(() => {
       setCurrentTime(new Date());
     }, 1000);
-
     return () => clearInterval(timer);
   }, []);
 
-  const toggleAvailability = () => {
-    setIsAvailable(!isAvailable);
+  // Update Firestore when admin toggles status
+  const toggleAvailability = async () => {
+    const newStatus = !isAvailable;
+    setIsAvailable(newStatus);
+    await setDoc(doc(db, 'site', 'status'), { isAvailable: newStatus });
   };
 
   const handleAdminLogin = () => {
     const password = prompt("Enter admin password:");
-    if (password === "YOUR_SECRET_PASSWORD") {
+    if (password === ADMIN_PASSWORD) {
       setIsAdmin(true);
     } else {
       alert("Incorrect password.");
