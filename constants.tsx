@@ -89,7 +89,7 @@ export const socialMedia = [
   { name: 'GitHub', url: 'https://github.com/mandarmenjoge', icon: <IconGitHub /> },
   { name: 'LinkedIn', url: 'https://www.linkedin.com/in/mandar-menjoge', icon: <IconLinkedIn /> },
   { name: 'Instagram', url: 'https://instagram.com/mandar.menjoge', icon: <IconInstagram /> },
-  { name: 'Twitter', url: '#', icon: <IconTwitter /> },
+  { name: 'Twitter', url: 'https://x.com/mandarmenjoge', icon: <IconTwitter /> },
   { name: 'Facebook', url: 'https://www.facebook.com/mandar.menjoge/', icon: <IconFacebook /> },
 ];
 
