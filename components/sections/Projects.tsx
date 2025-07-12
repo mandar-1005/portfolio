@@ -66,6 +66,12 @@ const Projects: React.FC = () => {
                                     {project.liveUrl ? '🌐 Live Demo' : '📁 View Code'}
                                 </div>
                             )}
+                            {/* Show note if available */}
+                            {project.note && (
+                                <div className="mt-2 text-xs text-slate-500 dark:text-slate-400 font-mono italic">
+                                    {project.note}
+                                </div>
+                            )}
                         </div>
                     </div>
                 ))}

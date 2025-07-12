@@ -209,8 +209,9 @@ export const projects: Project[] = [
     },
     {
         title: 'Faculty Content Platform',
-        description: 'A full-stack web platform for CS faculty and students to organize articles, case studies, and discussions by concepts and domains.',
-        tags: ['Next.js', 'Node.js', 'MongoDB', 'OpenAI API', 'Tailwind CSS'],
+        description: 'A full-stack web platform for CS faculty and students to organize articles, case studies, and discussions by concepts and domains. Built for Virginia Tech Computer Science Department.',
+        tags: ['Next.js', 'Node.js', 'MongoDB', 'OpenAI API', 'Tailwind CSS', 'Virginia Tech'],
+        note: 'Repository not publicly available (organization project)'
     },
     {
         title: 'Pharma Data Warehouse Modernization',
