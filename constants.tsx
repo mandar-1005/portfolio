@@ -215,8 +215,9 @@ export const projects: Project[] = [
     },
     {
         title: 'Pharma Data Warehouse Modernization',
-        description: 'Led the redesign of SQL-based data warehouses, implementing advanced indexing and partitioning to reduce query latency and enable faster decision-making.',
-        tags: ['SQL', 'Snowflake', 'Informatica', 'PySpark', 'Power BI'],
+        description: 'Led the redesign of SQL-based data warehouses, implementing advanced indexing and partitioning to reduce query latency and enable faster decision-making. Built for ZS Associates pharmaceutical clients.',
+        tags: ['SQL', 'Snowflake', 'Informatica', 'PySpark', 'Power BI', 'ZS Associates'],
+        note: 'Repository not publicly available (professional project)'
     }
 ];
 
