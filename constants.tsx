@@ -187,7 +187,7 @@ export const projects: Project[] = [
         description: 'A modern, responsive portfolio website built with React, TypeScript, and Tailwind CSS. Features include dark/light theme, command palette navigation, Firebase visitor counter, and smooth animations.',
         tags: ['React', 'TypeScript', 'Tailwind CSS', 'Vite', 'Firebase'],
         githubUrl: 'https://github.com/mandar-1005/portfolio',
-        liveUrl: 'https://portfolio-fced2.web.app'
+        note: 'You are currently viewing this portfolio site!'
     },
     {
         title: 'TimeAway.ai',
