@@ -183,6 +183,31 @@ export const journey: JourneyItem[] = [
 
 export const projects: Project[] = [
     {
+        title: 'Portfolio Website',
+        description: 'A modern, responsive portfolio website built with React, TypeScript, and Tailwind CSS. Features include dark/light theme, command palette navigation, Firebase visitor counter, and smooth animations.',
+        tags: ['React', 'TypeScript', 'Tailwind CSS', 'Vite', 'Firebase'],
+        githubUrl: 'https://github.com/mandar-1005/portfolio',
+        liveUrl: 'https://portfolio-fced2.web.app'
+    },
+    {
+        title: 'TimeAway.ai',
+        description: 'A web application for time management and productivity tracking. Built with TypeScript and modern web technologies to help users optimize their daily schedules and work efficiency.',
+        tags: ['TypeScript', 'JavaScript', 'CSS', 'Web Development'],
+        githubUrl: 'https://github.com/mandar-1005/timeaway.ai'
+    },
+    {
+        title: 'Bookstore React Application',
+        description: 'A comprehensive bookstore management system built with Java and React. Features include book inventory management, user authentication, and a modern web interface for browsing and purchasing books.',
+        tags: ['Java', 'React', 'HTML', 'Full-Stack'],
+        githubUrl: 'https://github.com/mandar-1005/Bookstore-React'
+    },
+    {
+        title: 'Ducky AI',
+        description: 'An AI-powered application built with Python and Jupyter notebooks. Features machine learning models for data analysis and intelligent decision-making processes.',
+        tags: ['Python', 'Jupyter Notebook', 'Machine Learning', 'AI'],
+        githubUrl: 'https://github.com/mandar-1005/Ducky-AI'
+    },
+    {
         title: 'Faculty Content Platform',
         description: 'A full-stack web platform for CS faculty and students to organize articles, case studies, and discussions by concepts and domains.',
         tags: ['Next.js', 'Node.js', 'MongoDB', 'OpenAI API', 'Tailwind CSS'],
@@ -191,12 +216,7 @@ export const projects: Project[] = [
         title: 'Pharma Data Warehouse Modernization',
         description: 'Led the redesign of SQL-based data warehouses, implementing advanced indexing and partitioning to reduce query latency and enable faster decision-making.',
         tags: ['SQL', 'Snowflake', 'Informatica', 'PySpark', 'Power BI'],
-    },
-    {
-        title: 'Personal Portfolio Website',
-        description: 'A modern, responsive portfolio website to showcase my skills and experience. Built from scratch with a focus on clean design and smooth animations.',
-        tags: ['React', 'TypeScript', 'Tailwind CSS', 'Vite'],
-    },
+    }
 ];
 
 // Skill categories

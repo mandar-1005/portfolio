@@ -7,6 +7,14 @@ const Projects: React.FC = () => {
     const [ref, isVisible] = useScrollObserver();
     const glassCardStyles = "bg-slate-300/20 dark:bg-light-navy/20 backdrop-blur-sm border border-slate-400/20 dark:border-light-slate/20 transition-colors duration-500";
 
+    const handleProjectClick = (project: any) => {
+        // Prioritize live URL over GitHub URL
+        const url = project.liveUrl || project.githubUrl;
+        if (url) {
+            window.open(url, '_blank', 'noopener,noreferrer');
+        }
+    };
+
     return (
         <section id="projects" ref={ref} className={`py-24 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0 is-visible' : 'opacity-0 translate-y-10'}`}>
             <h2 className="text-2xl md:text-3xl font-bold text-navy dark:text-white mb-8 font-mono flex items-center transition-colors duration-500">
@@ -16,7 +24,11 @@ const Projects: React.FC = () => {
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {projects.map((project, index) => (
-                    <div key={index} className={`group flex flex-col justify-between p-6 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 hover:scale-105 ${glassCardStyles} relative overflow-hidden`}>
+                    <div 
+                        key={index} 
+                        className={`group flex flex-col justify-between p-6 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 hover:scale-105 ${glassCardStyles} relative overflow-hidden ${(project.githubUrl || project.liveUrl) ? 'cursor-pointer' : ''}`}
+                        onClick={() => handleProjectClick(project)}
+                    >
                         {/* Gradient overlay on hover */}
                         <div className="absolute inset-0 bg-gradient-to-br from-brand/0 to-brand/0 group-hover:from-brand/5 group-hover:to-brand/10 transition-all duration-500"></div>
                         
@@ -28,12 +40,14 @@ const Projects: React.FC = () => {
                                 <div className="text-brand group-hover:scale-110 transition-transform duration-300">
                                     <FolderIcon />
                                 </div>
-                                {/* External link icon */}
-                                <div className="opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-2 group-hover:translate-x-0">
-                                    <svg className="w-5 h-5 text-brand" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                                    </svg>
-                                </div>
+                                {/* External link icon - only show if project has links */}
+                                {(project.githubUrl || project.liveUrl) && (
+                                    <div className="opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-2 group-hover:translate-x-0">
+                                        <svg className="w-5 h-5 text-brand" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                                        </svg>
+                                    </div>
+                                )}
                             </div>
                             <h3 className="text-xl font-bold text-navy dark:text-white group-hover:text-brand transition-colors duration-300 mb-3">{project.title}</h3>
                             <p className="text-sm text-light-navy dark:text-light-slate mb-6 transition-colors duration-500">{project.description}</p>
@@ -46,6 +60,12 @@ const Projects: React.FC = () => {
                                     </li>
                                 ))}
                             </ul>
+                            {/* Show link type indicator */}
+                            {(project.githubUrl || project.liveUrl) && (
+                                <div className="mt-4 text-xs text-brand/70 dark:text-brand/60 font-mono">
+                                    {project.liveUrl ? '🌐 Live Demo' : '📁 View Code'}
+                                </div>
+                            )}
                         </div>
                     </div>
                 ))}
