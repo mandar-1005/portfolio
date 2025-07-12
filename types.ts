@@ -6,6 +6,7 @@ export interface JourneyItem {
   period: string;
   description: string[];
   logo?: React.ReactNode;
+  link?: string;
 }
 
 export interface Project {
