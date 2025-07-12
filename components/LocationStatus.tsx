@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useScrollObserver } from '../hooks/useScrollObserver';
 import { db } from '../firebase';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
+import { Dialog } from '@headlessui/react';
 
 interface LocationStatusProps {
   isDark: boolean;
@@ -15,6 +16,9 @@ const LocationStatus: React.FC<LocationStatusProps> = ({ isDark }) => {
   const [currentTime, setCurrentTime] = useState(new Date());
   const [isAdmin, setIsAdmin] = useState(false);
   const glassCardStyles = "bg-slate-300/20 dark:bg-light-navy/20 backdrop-blur-sm border border-slate-400/20 dark:border-light-slate/20 rounded-lg shadow-lg p-6 transition-colors duration-500";
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [passwordInput, setPasswordInput] = useState('');
+  const [loginError, setLoginError] = useState('');
 
   // Fetch status from Firestore on mount
   useEffect(() => {
@@ -39,11 +43,24 @@ const LocationStatus: React.FC<LocationStatusProps> = ({ isDark }) => {
   };
 
   const handleAdminLogin = () => {
-    const password = prompt("Enter admin password:");
-    if (password === ADMIN_PASSWORD) {
+    setIsModalOpen(true);
+    setPasswordInput('');
+    setLoginError('');
+  };
+
+  const handleModalClose = () => {
+    setIsModalOpen(false);
+    setPasswordInput('');
+    setLoginError('');
+  };
+
+  const handlePasswordSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (passwordInput === ADMIN_PASSWORD) {
       setIsAdmin(true);
+      setIsModalOpen(false);
     } else {
-      alert("Incorrect password.");
+      setLoginError('Incorrect password.');
     }
   };
 
@@ -104,12 +121,37 @@ const LocationStatus: React.FC<LocationStatusProps> = ({ isDark }) => {
                   </div>
                 )}
                 {!isAdmin && (
-                  <button
-                    onClick={handleAdminLogin}
-                    className="ml-4 px-3 py-1 rounded bg-navy text-white text-xs font-mono hover:bg-navy/80 transition-all duration-200"
-                  >
-                    Admin Login
-                  </button>
+                  <>
+                    <button
+                      onClick={handleAdminLogin}
+                      className="ml-4 px-3 py-1 rounded bg-navy text-white text-xs font-mono hover:bg-navy/80 transition-all duration-200"
+                    >
+                      Admin Login
+                    </button>
+                    <Dialog open={isModalOpen} onClose={handleModalClose} className="fixed z-50 inset-0 overflow-y-auto">
+                      <div className="fixed inset-0 bg-black/30" aria-hidden="true" />
+                      <div className="flex items-center justify-center min-h-screen px-4">
+                        <Dialog.Panel className="relative bg-white dark:bg-dark-navy rounded-lg shadow-xl max-w-sm w-full mx-auto p-6 z-10">
+                          <Dialog.Title className="text-lg font-bold mb-4 text-navy dark:text-white">Admin Login</Dialog.Title>
+                          <form onSubmit={handlePasswordSubmit}>
+                            <input
+                              type="password"
+                              className="w-full px-3 py-2 border rounded mb-3 focus:outline-none focus:ring-2 focus:ring-navy"
+                              placeholder="Enter admin password"
+                              value={passwordInput}
+                              onChange={e => setPasswordInput(e.target.value)}
+                              autoFocus
+                            />
+                            {loginError && <div className="text-red-500 text-xs mb-2">{loginError}</div>}
+                            <div className="flex justify-end space-x-2">
+                              <button type="button" onClick={handleModalClose} className="px-3 py-1 rounded bg-slate-200 dark:bg-slate-700 text-navy dark:text-white text-xs font-mono">Cancel</button>
+                              <button type="submit" className="px-3 py-1 rounded bg-navy text-white text-xs font-mono hover:bg-navy/80">Login</button>
+                            </div>
+                          </form>
+                        </Dialog.Panel>
+                      </div>
+                    </Dialog>
+                  </>
                 )}
               </div>
 
