@@ -24,6 +24,7 @@ const Hero: React.FC = () => {
     const [currentText, setCurrentText] = useState('');
     // State to track when the typing animation is fully complete
     const [typingFinished, setTypingFinished] = useState(false);
+    const [resumeViewed, setResumeViewed] = useState(false);
 
     useEffect(() => {
         // If all lines are typed, trigger the final fade-in
@@ -122,19 +123,31 @@ const Hero: React.FC = () => {
 
                         {/* Resume Button - styled as terminal command */}
                         {typingFinished && (
-                            <div className="mt-8 animate-[fadeInUp_0.4s_ease-out_0.2s_backwards]">
+                            <div className="mt-8 animate-[fadeInUp_0.4s_ease-out_0.2s_backwards] flex flex-col items-start space-y-3">
                                 <div className="flex items-center text-green-600 dark:text-green-300 mb-2">
                                     <span className="mr-2">$</span>
                                     <span className="text-sm">cat resume.pdf</span>
                                 </div>
-                                <a 
-                                    href="/resume.pdf" 
-                                    target="_blank" 
-                                    rel="noopener noreferrer" 
-                                    className="inline-block group relative px-6 py-3 font-mono text-green-600 dark:text-green-300 border border-green-600 dark:border-green-300 rounded bg-white dark:bg-gray-950 hover:bg-green-600 hover:text-white dark:hover:bg-green-300 dark:hover:text-black transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-green-600/20 dark:hover:shadow-green-300/20"
-                                >
-                                    <span className="relative z-10">[View Resume]</span>
-                                </a>
+                                <div className="flex flex-row items-center space-x-4">
+                                    <button
+                                        onClick={() => {
+                                            window.open('/resume.pdf', '_blank', 'noopener,noreferrer');
+                                            setResumeViewed(true);
+                                        }}
+                                        className="inline-block group relative px-6 py-3 font-mono text-green-600 dark:text-green-300 border border-green-600 dark:border-green-300 rounded bg-white dark:bg-gray-950 hover:bg-green-600 hover:text-white dark:hover:bg-green-300 dark:hover:text-black transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-green-600/20 dark:hover:shadow-green-300/20"
+                                    >
+                                        <span className="relative z-10">[View Resume]</span>
+                                    </button>
+                                    {resumeViewed && (
+                                        <a
+                                            href="/resume.pdf"
+                                            download
+                                            className="inline-block group relative px-6 py-3 font-mono text-green-600 dark:text-green-300 border border-green-600 dark:border-green-300 rounded bg-white dark:bg-gray-950 hover:bg-green-600 hover:text-white dark:hover:bg-green-300 dark:hover:text-black transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-green-600/20 dark:hover:shadow-green-300/20"
+                                        >
+                                            <span className="relative z-10">[Download Resume]</span>
+                                        </a>
+                                    )}
+                                </div>
                             </div>
                         )}
                     </div>
