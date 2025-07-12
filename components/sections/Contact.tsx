@@ -13,8 +13,8 @@ const Contact: React.FC = () => {
     const [typingFinished, setTypingFinished] = useState(false);
     const [showForm, setShowForm] = useState(false);
     
-    const TYPING_SPEED = 15;
-    const DELAY_BETWEEN_LINES = 80;
+    const TYPING_SPEED = 5;
+    const DELAY_BETWEEN_LINES = 50;
 
     const BlinkingCursor: React.FC = () => <span className="inline-block w-1 h-[1em] bg-green-600 dark:bg-green-300 -mb-[2px] ml-1 animate-[blink_1s_step-end_infinite]" />;
 
@@ -24,7 +24,7 @@ const Contact: React.FC = () => {
         "$ cat contact.txt",
         "Email: mandarmenjoge@gmail.com",
         "LinkedIn: linkedin.com/in/mandar-menjoge",
-        "GitHub: github.com/mandar-menjoge",
+        "GitHub: github.com/mandar-1005",
         "$ echo '---'",
         "$ echo 'Ready to connect? Type: contact --form'",
         "Ready to connect? Type: contact --form"
@@ -133,7 +133,7 @@ const Contact: React.FC = () => {
                                 <div className="text-sm mb-6">Your message has been delivered. I'll get back to you shortly!</div>
                                 <button 
                                     onClick={() => setIsSubmitted(false)}
-                                    className="px-6 py-2 font-mono text-green-400 dark:text-green-300 border border-green-400 dark:border-green-300 rounded hover:bg-green-400/10 transition-all duration-300"
+                                    className="px-6 py-3 font-mono text-white bg-navy dark:bg-navy border border-navy dark:border-navy rounded-lg shadow-lg hover:bg-navy/80 dark:hover:bg-navy/80 transition-all duration-300 transform hover:scale-105 active:scale-95 focus:outline-none focus:ring-2 focus:ring-navy/50"
                                 >
                                     $ contact --form
                                 </button>
@@ -252,7 +252,7 @@ const Contact: React.FC = () => {
                                         <button 
                                             type="submit" 
                                             disabled={isSubmitting} 
-                                            className="px-6 py-2 font-mono text-green-600 dark:text-green-300 border border-green-600 dark:border-green-300 rounded hover:bg-green-600/10 dark:hover:bg-green-300/10 disabled:opacity-50 transition-all duration-300"
+                                            className="px-6 py-3 font-mono text-white bg-navy dark:bg-navy border border-navy dark:border-navy rounded-lg shadow-lg hover:bg-navy/80 dark:hover:bg-navy/80 disabled:opacity-50 transition-all duration-300 transform hover:scale-105 active:scale-95 focus:outline-none focus:ring-2 focus:ring-navy/50"
                                         >
                                             {isSubmitting ? 'Sending...' : 'Send Message'}
                                         </button>

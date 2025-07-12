@@ -46,20 +46,13 @@ const Journey: React.FC = () => {
                             {hasMilestones && (
                                 <button
                                     type="button"
-                                    className="absolute -top-3 -right-3 bg-brand text-white text-xs font-bold px-2 py-1 rounded shadow hover:bg-green-600 transition-colors duration-300 z-20 focus:outline-none focus:ring-2 focus:ring-brand/50"
+                                    className="absolute -top-3 -right-3 bg-navy dark:bg-navy text-white text-xs font-bold px-3 py-2 rounded-lg shadow-lg hover:bg-navy/80 dark:hover:bg-navy/80 transition-all duration-300 z-20 focus:outline-none focus:ring-2 focus:ring-navy/50 transform hover:scale-105 active:scale-95"
                                     aria-expanded={expanded}
                                     aria-controls={`milestone-details-${index}`}
                                     onClick={() => handleToggle(index)}
                                 >
                                     {expanded ? 'Hide Milestones' : 'Show Milestones'}
                                 </button>
-                            )}
-
-                            {/* Milestone badge */}
-                            {hasMilestones && (
-                                <span className="absolute -top-3 -right-3 bg-brand text-white text-xs font-bold px-2 py-1 rounded shadow group-hover:bg-green-600 transition-colors duration-300 z-20">
-                                    Milestone
-                                </span>
                             )}
 
                             <span className="font-mono text-xs text-light-navy dark:text-slate transition-colors duration-500">{item.period}</span>

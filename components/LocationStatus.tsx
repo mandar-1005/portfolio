@@ -9,6 +9,7 @@ const LocationStatus: React.FC<LocationStatusProps> = ({ isDark }) => {
   const [ref, isVisible] = useScrollObserver();
   const [isAvailable, setIsAvailable] = useState(true);
   const [currentTime, setCurrentTime] = useState(new Date());
+  const [isAdmin, setIsAdmin] = useState(false);
   const glassCardStyles = "bg-slate-300/20 dark:bg-light-navy/20 backdrop-blur-sm border border-slate-400/20 dark:border-light-slate/20 rounded-lg shadow-lg p-6 transition-colors duration-500";
 
   useEffect(() => {
@@ -21,6 +22,15 @@ const LocationStatus: React.FC<LocationStatusProps> = ({ isDark }) => {
 
   const toggleAvailability = () => {
     setIsAvailable(!isAvailable);
+  };
+
+  const handleAdminLogin = () => {
+    const password = prompt("Enter admin password:");
+    if (password === "YOUR_SECRET_PASSWORD") {
+      setIsAdmin(true);
+    } else {
+      alert("Incorrect password.");
+    }
   };
 
   const formatTime = (date: Date) => {
@@ -59,16 +69,34 @@ const LocationStatus: React.FC<LocationStatusProps> = ({ isDark }) => {
                 <h3 className="text-2xl font-bold text-slate-800 dark:text-slate-200">
                   Current Status
                 </h3>
-                <button
-                  onClick={toggleAvailability}
-                  className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+                {isAdmin ? (
+                  <button
+                    onClick={toggleAvailability}
+                    className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+                      isAvailable
+                        ? 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400'
+                        : 'bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-400'
+                    }`}
+                  >
+                    {isAvailable ? '🟢 Available' : '🔴 Busy'}
+                  </button>
+                ) : (
+                  <div className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
                     isAvailable
                       ? 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400'
                       : 'bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-400'
-                  }`}
-                >
-                  {isAvailable ? '🟢 Available' : '🔴 Busy'}
-                </button>
+                  }`}>
+                    {isAvailable ? '🟢 Available' : '🔴 Busy'}
+                  </div>
+                )}
+                {!isAdmin && (
+                  <button
+                    onClick={handleAdminLogin}
+                    className="ml-4 px-3 py-1 rounded bg-navy text-white text-xs font-mono hover:bg-navy/80 transition-all duration-200"
+                  >
+                    Admin Login
+                  </button>
+                )}
               </div>
 
               <div className="space-y-4">

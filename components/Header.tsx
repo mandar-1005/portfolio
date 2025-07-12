@@ -74,7 +74,7 @@ const Header: React.FC<HeaderProps> = ({ isDark, toggleTheme }) => {
           <div className="flex-shrink-0 flex items-center h-full">
             <button
               onClick={toggleTheme}
-              className="ml-2 p-2 rounded-full border border-slate-200/50 dark:border-light-slate/30 bg-white/80 dark:bg-dark-navy/80 md:bg-transparent md:dark:bg-transparent transition-colors duration-200 focus:outline-none"
+              className="ml-2 p-2 rounded-full border border-slate-200/50 dark:border-light-slate/30 bg-white/80 dark:bg-dark-navy/80 md:bg-transparent md:dark:bg-transparent transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-navy/50 hover:scale-105 active:scale-95"
               aria-label="Toggle dark mode"
             >
               {isDark ? <SunIcon /> : <MoonIcon />}
@@ -87,7 +87,7 @@ const Header: React.FC<HeaderProps> = ({ isDark, toggleTheme }) => {
       <div className="fixed top-6 left-6 z-50 md:hidden">
         <button
           onClick={toggleMenu}
-          className="relative w-10 h-10 flex flex-col items-center justify-center text-brand bg-white/80 dark:bg-dark-navy/80 backdrop-blur-md rounded-full shadow-lg focus:outline-none transition-colors duration-300"
+          className="relative w-10 h-10 flex flex-col items-center justify-center text-brand bg-white/80 dark:bg-dark-navy/80 backdrop-blur-md rounded-full shadow-lg focus:outline-none transition-all duration-300 hover:scale-105 active:scale-95 focus:ring-2 focus:ring-navy/50"
           aria-label="Toggle menu"
         >
           <span

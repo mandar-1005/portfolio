@@ -16,8 +16,8 @@ const About: React.FC = () => {
         "I'm also passionate about photography, capturing moments with my Nikon Z5, Insta 360 X4, and iPhone 16 Pro."
     ];
 
-    const TYPING_SPEED = 50;
-    const DELAY_BETWEEN_LINES = 300;
+    const TYPING_SPEED = 10;
+    const DELAY_BETWEEN_LINES = 60;
 
     useEffect(() => {
         if (!isVisible) return;
@@ -111,7 +111,7 @@ const About: React.FC = () => {
 
                 {/* Profile Image */}
                 <div className="lg:col-span-2 flex justify-center items-start">
-                    <div className="group relative w-80 h-80 md:w-96 md:h-96">
+                    <div className="group relative w-80 h-96 md:w-96 md:h-[28rem]">
                         <div className="absolute inset-0 bg-brand rounded-md z-0 transition-transform duration-300 group-hover:translate-x-2 group-hover:translate-y-2"></div>
                         <div className="absolute inset-0 rounded-md overflow-hidden z-10 border-2 border-transparent group-hover:border-brand transition-colors duration-300">
                             <img 

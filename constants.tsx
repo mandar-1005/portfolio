@@ -90,7 +90,7 @@ export const IconVTIAC = ({ className = "" }) => (
 export const email = 'mandarmenjoge@gmail.com';
 
 export const socialMedia = [
-  { name: 'GitHub', url: 'https://github.com/mandarmenjoge', icon: <IconGitHub /> },
+  { name: 'GitHub', url: 'https://github.com/mandar-1005', icon: <IconGitHub /> },
   { name: 'LinkedIn', url: 'https://www.linkedin.com/in/mandar-menjoge', icon: <IconLinkedIn /> },
   { name: 'Instagram', url: 'https://instagram.com/mandar.menjoge', icon: <IconInstagram /> },
   { name: 'Twitter', url: 'https://x.com/mandarmenjoge', icon: <IconTwitter /> },
