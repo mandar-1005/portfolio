@@ -12,6 +12,19 @@ const VisitorCounter: React.FC = () => {
       try {
         console.log('Starting visitor count update...');
         
+        // Generate or get unique visitor ID
+        const getVisitorId = () => {
+          let visitorId = localStorage.getItem('portfolio_visitor_id');
+          if (!visitorId) {
+            visitorId = 'visitor_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+            localStorage.setItem('portfolio_visitor_id', visitorId);
+          }
+          return visitorId;
+        };
+
+        const visitorId = getVisitorId();
+        console.log('Visitor ID:', visitorId);
+        
         // Reference to the visitor count document
         const visitorDoc = doc(db, 'analytics', 'visitorCount');
         
@@ -20,17 +33,40 @@ const VisitorCounter: React.FC = () => {
         const docSnap = await getDoc(visitorDoc);
         
         if (docSnap.exists()) {
-          // Document exists, increment the count
-          const currentCount = docSnap.data().count;
-          console.log('Current count:', currentCount);
+          const currentData = docSnap.data();
+          const currentCount = currentData.count || 0;
+          const existingVisitors = currentData.visitors || [];
           
-          await setDoc(visitorDoc, { count: increment(1) }, { merge: true });
-          setVisitorCount(currentCount + 1);
-          console.log('Updated count to:', currentCount + 1);
+          console.log('Current count:', currentCount);
+          console.log('Existing visitors:', existingVisitors.length);
+          
+          // Check if this visitor has already been counted
+          if (!existingVisitors.includes(visitorId)) {
+            // This is a new unique visitor
+            console.log('New unique visitor detected!');
+            const updatedVisitors = [...existingVisitors, visitorId];
+            
+            await setDoc(visitorDoc, { 
+              count: increment(1),
+              visitors: updatedVisitors,
+              lastUpdated: new Date()
+            }, { merge: true });
+            
+            setVisitorCount(currentCount + 1);
+            console.log('Updated count to:', currentCount + 1);
+          } else {
+            // This visitor has already been counted
+            console.log('Returning visitor - not incrementing count');
+            setVisitorCount(currentCount);
+          }
         } else {
           // Document doesn't exist, create it with count 1
           console.log('Creating new visitor count document...');
-          await setDoc(visitorDoc, { count: 1 });
+          await setDoc(visitorDoc, { 
+            count: 1,
+            visitors: [visitorId],
+            lastUpdated: new Date()
+          });
           setVisitorCount(1);
           console.log('Created with count: 1');
         }
@@ -77,7 +113,7 @@ const VisitorCounter: React.FC = () => {
       <div className="flex items-center space-x-2">
         <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
         <span className="text-sm font-mono text-slate-600 dark:text-slate-400">
-          <span className="text-brand font-semibold">{visitorCount.toLocaleString()}</span> visitors
+          <span className="text-brand font-semibold">{visitorCount.toLocaleString()}</span> unique visitors
         </span>
       </div>
     </div>
